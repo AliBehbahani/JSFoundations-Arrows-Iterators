@@ -5,8 +5,12 @@
  * - Logs every element of the array
  ************************************/
 const logger = function (array) {
-
+    array.forEach(function (arr) {console.log (arr)})
+ 
 };
+    
+
+
 
 /*************************************
  * toCelsius(temperatures)
@@ -20,6 +24,7 @@ const logger = function (array) {
  *   C = (F - 32) * (5/9)
  ************************************/
 const toCelsius = function (temperatures) {
+ return temperatures.map((C) => (C - 32) * (5/9))    // why cant we use temperatures.map(function(C) {(C - 32) * (5/9}) , isnt it the same as the abbreviated type with =>
 
 };
 
@@ -32,7 +37,10 @@ const toCelsius = function (temperatures) {
  *   that exceed the threshhold
  ***************************************/
 const hottestDays = function (temperatures, threshhold) {
-
+/*acc = temperatures.filter( function (acceptable) {acceptable > threshhold})
+return acc*/
+return temperatures.filter((temp) => temp > threshhold)      //why cant we assign the whole code as a variable and return it
+                                                             // why cant we use temperatures.filter(function (temp){temp>threshhold})
 };
 
 /******************************************
@@ -50,6 +58,14 @@ const hottestDays = function (temperatures, threshhold) {
  *       all previous functions
  *******************************************/
 const logHottestDays = function (temperatures, threshhold) {
+   const thresh = temperatures.filter( acceptable => acceptable > threshhold)
+   const convert = thresh.map((C) => (C - 32) * (5/9))
+  logger (convert)
+  // console.log(convert)
+
+//logger(toCelsius(hottestDays(temperatures , threshhold)))  //whats the difference between logger and console.lg?
+
+
 
 };
 
@@ -62,9 +78,9 @@ const logHottestDays = function (temperatures, threshhold) {
 
 /* Uncomment the following lines to test your code... */
 
-// logger([1, 2, 3, 4, 5, 6, 7]);
-// console.log(toCelsius([212, 122])); // should be: [100, 50];
-// console.log(hottestDays([1, 2, 3, 4, 5, 6, 7, 8, 13, 156, 1765], 5)); // should be : [6, 7, 8, 13, 156, 1765]
+ //logger([1, 2, 3, 4, 5, 6, 7]);
+ //console.log(toCelsius([212, 122])); // should be: [100, 50];
+ //console.log(hottestDays([1, 2, 3, 4, 5, 6, 7, 8, 13, 156, 1765], 5)); // should be : [6, 7, 8, 13, 156, 1765]
 // logHottestDays([140, 68, 212, 45, 149, 122, 19], 80); // should log "60", "100", "65", and "50"
 
 module.exports = { logger, toCelsius, hottestDays, logHottestDays };
